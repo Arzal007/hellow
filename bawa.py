@@ -3,7 +3,7 @@ from llama_index import VectorStoreIndex, ServiceContext, Document
 from llama_index.llms import OpenAI
 import openai
 from llama_index import SimpleDirectoryReader
-import fitz  # PyMuPDF for PDF extraction
+from PyPDF2 import PdfReader  # PyPDF2 for PDF extraction
 
 st.set_page_config(page_title="Chat with the Bain Report", page_icon="🦙", layout="centered", initial_sidebar_state="auto", menu_items=None)
 openai.api_key = st.secrets.openai_key
@@ -23,15 +23,14 @@ def load_data():
         # Initialize an empty list to store Document objects.
         docs = []
 
-        # Iterate over PDF files in the data directory and extract text.
+        # Iterate over PDF files in the data directory and extract text using PyPDF2.
         for pdf_file in os.listdir(data_dir):
             if pdf_file.endswith(".pdf"):
                 pdf_path = os.path.join(data_dir, pdf_file)
-                pdf_document = fitz.open(pdf_path)
+                pdf_reader = PdfReader(pdf_path)
                 text = ""
-                for page_num in range(len(pdf_document)):
-                    page = pdf_document[page_num]
-                    text += page.get_text()
+                for page in pdf_reader.pages:
+                    text += page.extract_text()
 
                 document = Document(text, title=pdf_file, source=pdf_path)
                 docs.append(document)
