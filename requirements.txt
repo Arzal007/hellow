@@ -1,5 +1,5 @@
+pypdf
 streamlit
 openai
 llama-index
 nltk
-PyPDF2
