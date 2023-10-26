@@ -19,7 +19,7 @@ def load_data():
     with st.spinner(text="Loading and indexing the Bain Report docs – hang tight! This should take 1-2 minutes."):
         reader = SimpleDirectoryReader(input_dir="./data", recursive=True)
         docs = reader.load_data()
-        service_context = ServiceContext.from_defaults(llm=OpenAI(model="gpt-4", temperature=0.5, system_prompt="You are an expert on the Bain Reports and your job is to answer technical questions. Assume that all questions are related to the Bain Reports. Keep your answers technical and based on facts – do not hallucinate features."))
+        service_context = ServiceContext.from_defaults(llm=OpenAI(model="gpt-4", temperature=0.8, system_prompt="You are an expert on the Bain Reports. Please provide detailed insights from the Bain Reports on [specific topic or question]."))
         index = VectorStoreIndex.from_documents(docs, service_context=service_context)
         return index
 
