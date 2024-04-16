@@ -2,7 +2,7 @@ import streamlit as st
 from llama_index.core import VectorStoreIndex, ServiceContext, Document
 from llama_index.llms import OpenAI
 import openai
-from llama_index import SimpleDirectoryReader
+from llama_index.core import SimpleDirectoryReader
 # from PyPDF2 import PdfReader
 
 st.set_page_config(page_title="Chat with the Bain Report (M&A)", page_icon="🦙", layout="centered", initial_sidebar_state="auto", menu_items=None)
