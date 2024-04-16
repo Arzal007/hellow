@@ -1,6 +1,6 @@
 import streamlit as st
 from llama_index.core import VectorStoreIndex, ServiceContext, Document
-from llama_index.llms import OpenAI
+from llama_index.core.llms import OpenAI
 import openai
 from llama_index.core import SimpleDirectoryReader
 # from PyPDF2 import PdfReader
