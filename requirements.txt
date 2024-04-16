@@ -2,5 +2,4 @@ pypdf
 streamlit
 openai
 llama-index
-llama-index.core
 nltk
